@@ -164,6 +164,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * My package
+         */
+        Cviebrock\EloquentSluggable\ServiceProvider::class ,
+        /*
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,

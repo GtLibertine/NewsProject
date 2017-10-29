@@ -15,4 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/panel','Admin\PanelController@index');
+
+Route::group(['namespace' => 'admin','prefix' => 'admin'], function (){
+
+    $this->resource('/articles','ArticleController');
+    $this->resource('/news','NewsController');
+    $this->get('/panel','PanelController@index');
+ }
+);

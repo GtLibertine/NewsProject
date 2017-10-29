@@ -32,7 +32,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/admin/panel">پنل اصلی</a></li>
-                <li><a href="#">خبر ها</a></li>
-                <li><a href="#">مقاله ها</a></li>
+                <li><a href="{{route('news.index')}}">خبر ها</a></li>
+                <li><a href="{{route('articles.index')}}">مقاله ها</a></li>
             </ul>
         </div>

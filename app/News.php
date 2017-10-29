@@ -22,4 +22,7 @@ class News extends Model
             ]
         ];
     }
+    public function path(){
+        return "/news/$this->slug";
+    }
 }

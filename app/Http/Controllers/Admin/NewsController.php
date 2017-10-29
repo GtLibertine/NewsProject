@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\NewsRequest;
 use App\News;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class NewsController extends Controller
+class NewsController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -33,12 +35,15 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param NewsRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        return $request->all();
+        auth()->loginUsingId(1);
+        $imagesUrl = $this->uploadImages($request->file('images'));
+        auth()->user()->news()->create(array_merge($request->all() , [ 'images' => $imagesUrl]));
+        return redirect(route('news.index'));
     }
 
     /**
@@ -60,7 +65,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('Admin.news.edit' , compact('news'));
     }
 
     /**
@@ -70,9 +75,23 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(NewsRequest $request, News $news)
     {
-        //
+        $file = $request->file('images');
+        $inputs = $request->all();
+
+        if($file) {
+            $inputs['images'] = $this->uploadImages($request->file('images'));
+        } else {
+            $inputs['images'] = $news->images;
+            $inputs['images']['thumb'] = $inputs['imagesThumb'];
+
+        }
+
+        unset($inputs['imagesThumb']);
+        $news->update($inputs);
+
+        return redirect(route('news.index'));
     }
 
     /**
@@ -83,6 +102,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return redirect(route('news.index'));
     }
 }

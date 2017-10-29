@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+    protected $fillable = [  'title','lead','description','body','images' ,'tags' ];
     use Sluggable;
 
+    protected $casts = [
+        'images' => 'array'
+    ];
     /**
      * Return the sluggable configuration array for this model.
      *

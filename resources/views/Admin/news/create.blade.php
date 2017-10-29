@@ -17,6 +17,12 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
+                    <label for="lead" class="control-label">لید خبر</label>
+                    <input type="text" class="form-control" name="lead" id="lead" placeholder="عنوان را وارد کنید" value="{{ old('lead') }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
                     <label for="description" class="control-label">توضیحات کوتاه</label>
                     <textarea rows="5" class="form-control" name="description" id="description" placeholder="توضیحات را وارد کنید">{{ old('description') }}</textarea>
                 </div>
@@ -33,9 +39,9 @@
                     <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید">
                 </div>
                 <div class="col-sm-6">
+
                     <label for="tags" class="control-label">تگ ها</label>
-                    <input type="text" class="form-control" name="tags" id="tags" placeholder="تگ ها را وارد کنید" value="{{ old('tags') }}">
-                </div>
+                    <input type="text" class="form-control" name="tags" id="tags" placeholder="تگ ها را وارد کنید" value="{{ old('tags') }}"></div
             </div>
             <div class="form-group">
                 <div class="col-sm-12">

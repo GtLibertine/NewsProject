@@ -77,6 +77,8 @@ class NewsController extends AdminController
      */
     public function update(NewsRequest $request, News $news)
     {
+
+
         $file = $request->file('images');
         $inputs = $request->all();
 
@@ -84,6 +86,7 @@ class NewsController extends AdminController
             $inputs['images'] = $this->uploadImages($request->file('images'));
         } else {
             $inputs['images'] = $news->images;
+
             $inputs['images']['thumb'] = $inputs['imagesThumb'];
 
         }

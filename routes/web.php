@@ -21,5 +21,6 @@ Route::group(['namespace' => 'admin','prefix' => 'admin'], function (){
     $this->resource('/articles','ArticleController');
     $this->resource('/news','NewsController');
     $this->get('/panel','PanelController@index');
+    $this->post('/panel/upload-image','PanelController@UploadImageSubject');
  }
 );
